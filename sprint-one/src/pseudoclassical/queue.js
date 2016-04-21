@@ -1,6 +1,7 @@
 var Queue = function() {
   // Hey! Rewrite in the new style. Your code will wind up looking very similar,
   // but try not not reference your old code in writing the new style.
+  this.head = 0;
   this.tail = 0;
 };
 
@@ -10,15 +11,13 @@ Queue.prototype.enqueue = function(value) {
 };
 
 Queue.prototype.dequeue = function() {
-  var dequeued = this[0];
-  for ( var key in this ) {
-    this[key - 1] = this[key];
-  }
-  delete this[this.tail];
-  this.tail--;
+  var dequeued = this[this.head];
+  delete this[this.head];
+  this.head++;
   return dequeued;
 };
 
 Queue.prototype.size = function() {
-  return this.tail < 0 ? 0 : this.tail;
+  var size = this.tail - this.head;
+  return size < 0 ? 0 : size;
 };

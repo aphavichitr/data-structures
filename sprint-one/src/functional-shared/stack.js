@@ -8,9 +8,6 @@ var Stack = function() {
 };
 
 var stackMethods = {
-  size: function() {
-    return this.length < 0 ? 0 : this.length;
-  },
   push: function(value) {
     this[this.length] = value;
     this.length++;
@@ -20,6 +17,9 @@ var stackMethods = {
     var popped = this[this.length];
     delete this[this.length];
     return popped;
+  },
+  size: function() {
+    return this.length < 0 ? 0 : this.length;
   }
 };
 

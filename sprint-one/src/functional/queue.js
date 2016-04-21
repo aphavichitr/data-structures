@@ -3,6 +3,7 @@ var Queue = function() {
 
   // Use an object with numeric keys to store values
   var storage = {};
+  var head = 0;
   var tail = 0;
 
   // Implement the methods below
@@ -13,17 +14,15 @@ var Queue = function() {
   };
 
   someInstance.dequeue = function() {
-    var dequeued = storage[0];
-    for ( var key in storage ) {
-      storage[key - 1] = storage[key];
-    }
-    delete storage[tail - 1];
-    tail--;
+    var dequeued = storage[head];
+    delete storage[head];
+    head++;
     return dequeued;
   };
 
   someInstance.size = function() {
-    return tail < 0 ? 0 : tail;
+    var size = tail - head;
+    return size < 0 ? 0 : size;
   };
 
   return someInstance;

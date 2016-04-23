@@ -38,8 +38,7 @@ DoublyLinkedList.prototype.removeTail = function() {
   if ( this.tail.prev ) {
     this.tail.prev.next = null;
     this.tail = this.tail.prev;
-  }
-  if ( !this.tail.prev ) {
+  } else {
     this.tail = null;
     this.head = null;
   }
@@ -51,15 +50,34 @@ DoublyLinkedList.prototype.removeHead = function() {
   if ( this.head.next ) {
     this.head.next.prev = null;
     this.head = this.head.next;
-  }
-  if ( !this.head.next ) {
+  } else {
     this.head = null;
     this.tail = null;
   }
   return oldHeadVal;
 };
 
-
 DoublyLinkedList.prototype.contains = function(value) {
-
+  return _.reduce(this, function(wasFound, node) {
+    return wasFound || node.value === value;
+  }, false);
 };
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
